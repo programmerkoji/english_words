@@ -21,6 +21,7 @@ class CreateWordsTable extends Migration
             $table->tinyInteger('memory')->unsigned();
             $table->text('memo')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

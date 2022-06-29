@@ -52,7 +52,8 @@ class WordController extends Controller
 
         return redirect()
         ->route('words.index')
-        ->with(['message' => '単語の登録をしました。']);
+        ->with(['message' => '単語の登録をしました。',
+        'status' => 'info']);
     }
 
     /**
@@ -98,7 +99,8 @@ class WordController extends Controller
 
         return redirect()
         ->route('words.index')
-        ->with(['message' => '単語の編集をしました。']);
+        ->with(['message' => '単語の編集をしました。',
+        'status' => 'info']);
     }
 
     /**
@@ -109,6 +111,10 @@ class WordController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Word::findOrFail($id)->delete();
+
+        return redirect()->route('words.index')
+        ->with(['message' => '単語を削除しました。',
+        'status' => 'alert']);
     }
 }

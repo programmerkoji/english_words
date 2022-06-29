@@ -11,7 +11,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="text-gray-600 body-font">
                         <div class="mb-4">
-                            <x-flash-message status="info" />
+                            <x-flash-message status="session('status')" />
                         </div>
                         <div class="mb-6">
                             <a href="{{ route('words.create') }}" class="inline-block text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">単語を登録する</a>
@@ -44,9 +44,11 @@
                                                 <div class="text-right">
                                                     <a href="{{ route('words.edit', ['word' => $word->id]) }}" class="mx-auto text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded text-sm">編集</a>
                                                 </div>
-                                                <div class="text-right mt-2">
-                                                    <a href="" class="mx-auto text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded text-sm">削除</a>
-                                                </div>
+                                                <form id="delete_{{ $word->id }}" method="post" action="{{ route('words.destroy', ['word' => $word->id]) }}" class="text-right mt-2">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <a href="#" data-id="{{ $word->id }}" onclick="deletePost(this)" class="mx-auto text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded text-sm">削除</a>
+                                                </form>
                                             </div>
                                         </div>
                                     </li>
@@ -59,4 +61,10 @@
             </div>
         </div>
     </div>
+    <script>
+        function deletePost(e) {
+        'use strict';
+        if (confirm('本当に削除してもいいですか?')) { document.getElementById('delete_' + e.dataset.id).submit(); }
+        }
+    </script>
 </x-app-layout>
