@@ -21,7 +21,7 @@
                                 @foreach ($words as $word)
                                     <li class="w-full xl:w-1/3 md:w-1/2 p-2">
                                         <div class="border border-gray-200 p-3 rounded-lg flex items-center justify-between">
-                                            <div class="flex items-center gap-4 w-4/5">
+                                            <div class="flex items-center gap-4 w-3/4">
                                                 @if ($word->memory === 1)
                                                     <div class="w-8 h-8 inline-flex items-center justify-center rounded-full bg-green-500">
                                                         <img src="{{ asset('images/smile_icon.svg') }}" alt="" class="w-5 h-5">
@@ -40,7 +40,7 @@
                                                     <a href="#" data-micromodal-trigger="modal-{{ $word->id }}" class="text-xs px-2 py-1 rounded-sm border-solid border-indigo-500 border text-indigo-500">答えを見る</a>
                                                 </div>
                                             </div>
-                                            <div class="w-1/5">
+                                            <div class="w-1/4">
                                                 <div class="text-right">
                                                     <a href="" class="mx-auto text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded text-sm">編集</a>
                                                 </div>
