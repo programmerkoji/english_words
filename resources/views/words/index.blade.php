@@ -42,7 +42,7 @@
                                             </div>
                                             <div class="w-1/4">
                                                 <div class="text-right">
-                                                    <a href="" class="mx-auto text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded text-sm">編集</a>
+                                                    <a href="{{ route('words.edit', ['word' => $word->id]) }}" class="mx-auto text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded text-sm">編集</a>
                                                 </div>
                                                 <div class="text-right mt-2">
                                                     <a href="" class="mx-auto text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded text-sm">削除</a>

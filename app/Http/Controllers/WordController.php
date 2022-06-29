@@ -74,7 +74,9 @@ class WordController extends Controller
      */
     public function edit($id)
     {
-        //
+        $word = Word::findOrFail($id);
+
+        return view('words.edit', compact('word'));
     }
 
     /**
@@ -84,9 +86,19 @@ class WordController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreWord $request, $id)
     {
-        //
+        $word = Word::findOrFail($id);
+        $word->word_en = $request->word_en;
+        $word->word_ja = $request->word_ja;
+        $word->part_of_speech = $request->part_of_speech;
+        $word->memory = $request->memory;
+        $word->memo = $request->memo;
+        $word->save();
+
+        return redirect()
+        ->route('words.index')
+        ->with(['message' => '単語の編集をしました。']);
     }
 
     /**

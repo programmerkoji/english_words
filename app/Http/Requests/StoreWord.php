@@ -23,12 +23,24 @@ class StoreWord extends FormRequest
      */
     public function rules()
     {
-        return [
-            'word_en' => ['required', 'unique:words,word_en', 'string', 'max:255'],
-            'word_ja' => ['required', 'string', 'max:255'],
-            'part_of_speech' => ['required'],
-            'memory' => ['required'],
-            'memo' => ['string', 'nullable'],
+        $route= $this->route()->getName(); //現在のroute名を取得
+
+        $rules = [
+            'word_ja' => 'required|string|max:255',
+            'part_of_speech' => 'required',
+            'memory' => 'required',
+            'memo' => 'string|nullable',
         ];
+
+        switch ($route) {
+            case 'words.store':
+                $rules['word_en'] = 'required|unique:words,word_en|string|max:255';
+                break;
+
+            case 'words.update':
+                $rules['word_en'] = 'required|string|max:255';
+                break;
+        }
+        return $rules;
     }
 }

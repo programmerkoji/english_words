@@ -3,7 +3,6 @@
         <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-{{ $word->id }}-title">
             <div class="modal__header">
                 <div class="flex items-center gap-4">
-                    <p class="modal__title" id="modal-{{ $word->id }}-title">{{ $word->word_ja }}</p>
                     @if ($word->part_of_speech === 1)
                         <p class="text-sm px-2 py-1 rounded-sm border-solid border-indigo-500 border text-indigo-500">名詞</p>
                     @elseif ($word->part_of_speech === 2)
@@ -15,6 +14,7 @@
                     @elseif ($word->part_of_speech === 5)
                         <p class="text-sm px-2 py-1 rounded-sm border-solid border-indigo-500 border text-indigo-500">熟語</p>
                     @endif
+                    <p class="modal__title" id="modal-{{ $word->id }}-title">{{ $word->word_ja }}</p>
                 </div>
                 <button type="button" class="modal__close" aria-label="Close modal" data-micromodal-close></button>
             </div>

@@ -18,7 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('words', WordController::class)->middleware('auth');
+Route::resource('words', WordController::class)
+->middleware('auth')->except(['show']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
