@@ -17,9 +17,9 @@ class CreateWordsTable extends Migration
             $table->id();
             $table->string('word_en', 255);
             $table->string('word_ja', 255);
-            $table->integer('part_of_speech');
-            $table->integer('comprehension');
-            $table->text('memo');
+            $table->tinyInteger('part_of_speech')->unsigned();
+            $table->tinyInteger('memory')->unsigned();
+            $table->text('memo')->nullable();
             $table->timestamps();
         });
     }

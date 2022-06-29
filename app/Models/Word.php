@@ -13,7 +13,7 @@ class Word extends Model
         'word_en',
         'word_ja',
         'part_of_speech',
-        'comprehension',
+        'memory',
         'memo',
     ];
 }

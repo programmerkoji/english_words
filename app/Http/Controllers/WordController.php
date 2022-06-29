@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreWord;
+use App\Models\Word;
 use Illuminate\Http\Request;
 
 class WordController extends Controller
@@ -17,7 +19,9 @@ class WordController extends Controller
      */
     public function index()
     {
-        return view('words.index');
+        $words = Word::all();
+
+        return view('words.index', compact('words'));
     }
 
     /**
@@ -27,7 +31,7 @@ class WordController extends Controller
      */
     public function create()
     {
-        //
+        return view('words.create');
     }
 
     /**
@@ -36,9 +40,19 @@ class WordController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreWord $request)
     {
-        //
+        Word::create([
+            'word_en' => $request->word_en,
+            'word_ja' => $request->word_ja,
+            'part_of_speech' => $request->part_of_speech,
+            'memory' => $request->memory,
+            'memo' => $request->memo,
+        ]);
+
+        return redirect()
+        ->route('words.index')
+        ->with(['message' => '単語の登録をしました。']);
     }
 
     /**
