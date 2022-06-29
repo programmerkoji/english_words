@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Word;
 use Illuminate\Database\Seeder;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,7 +18,8 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call([
             UserSeeder::class,
-            WordSeeder::class,
+            // WordSeeder::class,
         ]);
+        Word::factory(100)->create();
     }
 }

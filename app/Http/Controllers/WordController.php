@@ -19,7 +19,7 @@ class WordController extends Controller
      */
     public function index()
     {
-        $words = Word::all();
+        $words = Word::paginate(12);
 
         return view('words.index', compact('words'));
     }

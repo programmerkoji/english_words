@@ -55,6 +55,9 @@
                                     <x-answer-modal :word="$word" />
                                 @endforeach
                             </ul>
+                            <div class="mt-4">
+                                {{ $words->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>
