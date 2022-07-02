@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class StoreWord extends FormRequest
 {
@@ -34,7 +36,8 @@ class StoreWord extends FormRequest
 
         switch ($route) {
             case 'words.store':
-                $rules['word_en'] = 'required|unique:words,word_en|string|max:255';
+                // $rules['word_en'] = 'required|unique:words,word_en|string|max:255';
+                $rules['word_en'] =['required', Rule::unique('words')->where('user_id', Auth::id()), 'string', 'max:255'];
                 break;
 
             case 'words.update':

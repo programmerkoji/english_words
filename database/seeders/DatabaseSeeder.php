@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call([
             UserSeeder::class,
-            // WordSeeder::class,
+            WordSeeder::class,
         ]);
-        Word::factory(100)->create();
+        // Word::factory(100)->create();
     }
 }

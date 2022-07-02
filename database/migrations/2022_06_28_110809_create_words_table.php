@@ -15,6 +15,8 @@ class CreateWordsTable extends Migration
     {
         Schema::create('words', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')
+            ->constrained();
             $table->string('word_en', 255);
             $table->string('word_ja', 255);
             $table->tinyInteger('part_of_speech')->unsigned();

@@ -5,12 +5,28 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreWord;
 use App\Models\Word;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WordController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
+
+        $this->middleware(function ($request, $next) {
+
+            $id = $request->route()->parameter('word');
+
+            if(!is_null($id)){ // null判定
+                $wordUserId = Word::findOrFail($id)->user->id;
+                $wordUserId = (int)$wordUserId; // キャスト 文字列→数値に型変換
+                $userId = Auth::id();
+                if($userId !== $wordUserId) {
+                    abort(404);
+                }
+            }
+            return $next($request);
+        });
     }
     /**
      * Display a listing of the resource.
@@ -19,7 +35,8 @@ class WordController extends Controller
      */
     public function index()
     {
-        $words = Word::paginate(12);
+        $userId = Auth::id();
+        $words = Word::where('user_id', $userId)->paginate(12);
 
         return view('words.index', compact('words'));
     }
@@ -42,7 +59,9 @@ class WordController extends Controller
      */
     public function store(StoreWord $request)
     {
+
         Word::create([
+            'user_id' => Auth::id(),
             'word_en' => $request->word_en,
             'word_ja' => $request->word_ja,
             'part_of_speech' => $request->part_of_speech,
@@ -90,6 +109,7 @@ class WordController extends Controller
     public function update(StoreWord $request, $id)
     {
         $word = Word::findOrFail($id);
+
         $word->word_en = $request->word_en;
         $word->word_ja = $request->word_ja;
         $word->part_of_speech = $request->part_of_speech;
