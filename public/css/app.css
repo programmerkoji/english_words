@@ -1588,10 +1588,13 @@ select {
     margin-left: 0px;
   }
 
+<<<<<<< HEAD
   .sm\:ml-10 {
     margin-left: 2.5rem;
   }
 
+=======
+>>>>>>> refs/rewritten/app-cssコンフリクト解消
   .sm\:block {
     display: block;
   }
