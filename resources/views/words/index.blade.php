@@ -13,14 +13,30 @@
                         <div class="mb-4">
                             <x-flash-message status="session('status')" />
                         </div>
-                        <div class="mb-6">
+                        <div class="mb-6 flex items-center flex-wrap gap-4">
                             <a href="{{ route('words.create') }}" class="inline-block text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">単語を登録する</a>
+                            <div class="md:ml-auto flex justify-end gap-2">
+                                <form action="{{ route('words.index') }}" method="get">
+                                    <select name="memory_search" id="memory_search">
+                                        <option value="">記憶度</option>
+                                        <option value="1" @if(\Request::get('memory_search') === '1') selected @endif>○</option>
+                                        <option value="2" @if(\Request::get('memory_search') === '2') selected @endif>△</option>
+                                        <option value="3" @if(\Request::get('memory_search') === '3') selected @endif>☓</option>
+                                    </select>
+                                </form>
+                                <form action="{{ route('words.index') }}" method="get">
+                                    <select name="sort" id="sort">
+                                        <option value="1" @if(\Request::get('sort') === '1') selected @endif>新しい順</option>
+                                        <option value="2" @if(\Request::get('sort') === '2') selected @endif>古い順</option>
+                                    </select>
+                                </form>
+                            </div>
                         </div>
                         <div class="container mx-auto">
                             <ul class="flex flex-wrap -m-2">
                                 @foreach ($words as $word)
                                     <li class="w-full xl:w-1/3 md:w-1/2 p-2">
-                                        <div class="border border-gray-200 p-3 rounded-lg flex items-center justify-between">
+                                        <div class="border border-gray-200 p-3 rounded-lg flex flex-wrap items-center justify-between">
                                             <div class="flex items-center gap-4 w-3/4">
                                                 @if ($word->memory === 1)
                                                     <div class="w-8 h-8 inline-flex items-center justify-center rounded-full bg-green-500">
@@ -50,9 +66,12 @@
                                                     <a href="#" data-id="{{ $word->id }}" onclick="deletePost(this)" class="mx-auto text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded text-sm">削除</a>
                                                 </form>
                                             </div>
+                                            <div class="w-full text-right mt-3">
+                                                <p class="text-sm">登録：{{ $word->created_at }}</p>
+                                            </div>
                                         </div>
+                                        <x-answer-modal :word="$word" />
                                     </li>
-                                    <x-answer-modal :word="$word" />
                                 @endforeach
                             </ul>
                             <div class="mt-4">
@@ -65,6 +84,18 @@
         </div>
     </div>
     <script>
+        const sort_select = document.getElementById('sort');
+        sort_select.addEventListener('change', function () {
+            this.form.submit();
+        });
+
+        const memory_select = document.getElementById('memory_search');
+        memory_select.addEventListener('change', function () {
+            this.form.submit();
+        });
+
+
+
         function deletePost(e) {
         'use strict';
         if (confirm('本当に削除してもいいですか?')) { document.getElementById('delete_' + e.dataset.id).submit(); }

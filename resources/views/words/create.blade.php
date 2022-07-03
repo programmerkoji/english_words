@@ -53,9 +53,9 @@
                                             <label class="leading-7 text-sm text-gray-600">記憶度</label>
                                             <select name="memory" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                                 <option value="">選択してください</option>
-                                                <option value="1" @if((int)old('memory')=== 1) selected @endif>覚えた</option>
-                                                <option value="2" @if((int)old('memory')=== 2) selected @endif>たまに忘れる</option>
-                                                <option value="3" @if((int)old('memory')=== 3) selected @endif>よく忘れる</option>
+                                                <option value="1" @if((int)old('memory')=== 1) selected @endif>○</option>
+                                                <option value="2" @if((int)old('memory')=== 2) selected @endif>△</option>
+                                                <option value="3" @if((int)old('memory')=== 3) selected @endif>☓</option>
                                             </select>
                                             @error('memory')
                                             <p class="text-rose-700">{{ $message }}</p>

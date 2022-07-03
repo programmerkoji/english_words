@@ -33,12 +33,27 @@ class WordController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $userId = Auth::id();
-        $words = Word::where('user_id', $userId)->paginate(12);
+        // 表示順
+        $sort = $request->get('sort');
+        if(!$sort || $sort === '1') {
+            $words = Word::where('user_id', Auth::id())->orderBy('created_at', 'desc')->paginate(12);
+        } elseif ($sort === '2') {
+            $words = Word::where('user_id', Auth::id())->orderBy('created_at', 'asc')->paginate(12);
+        }
 
-        return view('words.index', compact('words'));
+        // 記憶度
+        $memory_search = $request->get('memory_search');
+        if($memory_search === '1') {
+            $words = Word::where(['user_id' => Auth::id(), 'memory' => 1])->paginate(12);
+        } elseif ($memory_search === '2') {
+            $words = Word::where(['user_id' => Auth::id(), 'memory' => 2])->paginate(12);
+        } elseif ($memory_search === '3') {
+            $words = Word::where(['user_id' => Auth::id(), 'memory' => 3])->paginate(12);
+        }
+
+        return view('words.index', compact('words', 'sort'));
     }
 
     /**
