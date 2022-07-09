@@ -12,7 +12,6 @@ class Word extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'user_id',
         'word_en',
         'word_ja',
         'part_of_speech',

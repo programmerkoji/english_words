@@ -67,15 +67,7 @@ class WordController extends Controller
      */
     public function store(StoreWord $request)
     {
-
-        Word::create([
-            'user_id' => Auth::id(),
-            'word_en' => $request->word_en,
-            'word_ja' => $request->word_ja,
-            'part_of_speech' => $request->part_of_speech,
-            'memory' => $request->memory,
-            'memo' => $request->memo,
-        ]);
+        auth()->user()->words()->create($request->all());
 
         return redirect()
         ->route('words.index')
@@ -117,13 +109,7 @@ class WordController extends Controller
     public function update(StoreWord $request, $id)
     {
         $word = Word::findOrFail($id);
-
-        $word->word_en = $request->word_en;
-        $word->word_ja = $request->word_ja;
-        $word->part_of_speech = $request->part_of_speech;
-        $word->memory = $request->memory;
-        $word->memo = $request->memo;
-        $word->save();
+        $word->update($request->all());
 
         return redirect()
         ->route('words.index')
