@@ -70,10 +70,12 @@
                                                 <p class="text-sm">登録：{{ $word->created_at }}</p>
                                             </div>
                                         </div>
-                                        <x-answer-modal :word="$word" />
                                     </li>
+                                    @endforeach
+                                </ul>
+                                @foreach ($words as $word)
+                                    <x-answer-modal :word="$word" />
                                 @endforeach
-                            </ul>
                             <div class="mt-4">
                                 {{ $words->links() }}
                             </div>
@@ -94,7 +96,12 @@
             this.form.submit();
         });
 
-
+        const modal_memory_selects = document.querySelectorAll('.modal_memory_search');
+        modal_memory_selects.forEach(modal_memory_select => {
+            modal_memory_select.addEventListener('change', function () {
+                this.form.submit();
+            })
+        });
 
         function deletePost(e) {
         'use strict';

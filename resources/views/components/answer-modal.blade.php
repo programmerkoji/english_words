@@ -22,7 +22,16 @@
                 <p>{{ $word->memo }}</p>
             </div>
             <div class="modal__footer">
-            <button type="button" class="modal__btn" data-micromodal-close aria-label="Close this dialog window">Close</button>
+                <form action="{{ route('words.answerMemoryUpdate', ['word' => $word->id]) }}" method="post">
+                    @method('PATCH')
+                    @csrf
+                    <ul class="flex flex-col md:flex-row gap-2">
+                        <li><button type="submit" name="memory" value="1" class="modal__btn" @if($word->memory == '1')  style="background-color: #999;color: #fff;" @endif >覚えた</button></li>
+                        <li><button type="submit" name="memory" value="2" class="modal__btn" @if($word->memory == '2')  style="background-color: #999;color: #fff;" @endif>たまに忘れる</button></li>
+                        <li><button type="submit" name="memory" value="3" class="modal__btn" @if($word->memory == '3')  style="background-color: #999;color: #fff;" @endif>よく忘れる</button></li>
+                    </ul>
+                </form>
+                <button type="button" class="modal__btn" data-micromodal-close aria-label="Close this dialog window">Close</button>
             </div>
         </div>
     </div>

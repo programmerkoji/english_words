@@ -791,9 +791,6 @@ select {
 .mt-6 {
   margin-top: 1.5rem;
 }
-.ml-auto {
-  margin-left: auto;
-}
 .block {
   display: block;
 }
@@ -857,8 +854,8 @@ select {
 .w-6 {
   width: 1.5rem;
 }
-.w-1\/2 {
-  width: 50%;
+.w-2\/3 {
+  width: 66.666667%;
 }
 .w-3\/4 {
   width: 75%;
@@ -880,9 +877,6 @@ select {
 }
 .w-14 {
   width: 3.5rem;
-}
-.w-2\/3 {
-  width: 66.666667%;
 }
 .min-w-fit {
   min-width: -webkit-fit-content;
@@ -1055,10 +1049,6 @@ select {
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
 }
-.border-gray-500 {
-  --tw-border-opacity: 1;
-  border-color: rgb(107 114 128 / var(--tw-border-opacity));
-}
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1098,6 +1088,10 @@ select {
 .bg-gray-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
+.bg-gray-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
 }
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
@@ -1588,13 +1582,6 @@ select {
     margin-left: 0px;
   }
 
-<<<<<<< HEAD
-  .sm\:ml-10 {
-    margin-left: 2.5rem;
-  }
-
-=======
->>>>>>> refs/rewritten/app-cssコンフリクト解消
   .sm\:block {
     display: block;
   }
@@ -1662,6 +1649,10 @@ select {
     margin-left: auto;
   }
 
+  .md\:flex {
+    display: flex;
+  }
+
   .md\:w-2\/3 {
     width: 66.666667%;
   }
@@ -1672,6 +1663,10 @@ select {
 
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:flex-row {
+    flex-direction: row;
   }
 
   .md\:border-t-0 {
