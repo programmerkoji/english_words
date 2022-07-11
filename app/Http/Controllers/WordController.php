@@ -131,4 +131,16 @@ class WordController extends Controller
         ->with(['message' => '単語を削除しました。',
         'status' => 'alert']);
     }
+
+    public function answerMemoryUpdate(Request $request, $id)
+    {
+        $word = Word::findOrFail($id);
+        $word->memory = $request->memory;
+        $word->save();
+
+        return redirect()
+        ->route('words.index')
+        ->with(['message' => '記憶度の編集をしました。',
+        'status' => 'info']);
+    }
 }
