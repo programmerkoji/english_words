@@ -28,8 +28,4 @@ Route::prefix('words')->
     Route::patch('answerMemoryUpdate/{word}', [WordController::class, 'answerMemoryUpdate'])->name('words.answerMemoryUpdate');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
 require __DIR__.'/auth.php';
