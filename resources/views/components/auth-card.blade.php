@@ -4,6 +4,13 @@
     </div>
 
     <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+        <div class="p-4 bg-gray-100 mb-2">
+            <p>●テストユーザー情報</p>
+            <dl class="mt-2">
+                <div class="flex"><dt>メールアドレス：</dt><dd>test@test.com</dd></div>
+                <div class="flex"><dt>パスワード：</dt><dd>pasword1234</dd></div>
+            </dl>
+        </div>
         {{ $slot }}
     </div>
 </div>
