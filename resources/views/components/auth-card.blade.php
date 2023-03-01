@@ -8,7 +8,7 @@
             <p>●テストユーザー情報</p>
             <dl class="mt-2">
                 <div class="flex"><dt>メールアドレス：</dt><dd>test@test.com</dd></div>
-                <div class="flex"><dt>パスワード：</dt><dd>pasword1234</dd></div>
+                <div class="flex"><dt>パスワード：</dt><dd>password1234</dd></div>
             </dl>
         </div>
         {{ $slot }}
